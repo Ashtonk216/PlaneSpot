@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -74,4 +76,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.converter.scalars)
     implementation(libs.play.services.location)
+    implementation(libs.moshi.v1150)
+    kapt(libs.moshi.kotlin.codegen.v1150)
+    implementation(libs.converter.moshi)
 }

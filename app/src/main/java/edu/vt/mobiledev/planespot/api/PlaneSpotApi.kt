@@ -8,5 +8,5 @@ interface PlaneSpotApi {
     suspend fun getFlightData(
         @Path("lat") lat: Double,
         @Path("lon") lon: Double
-    ): String
+    ): FlightItem
 }

@@ -2,4 +2,17 @@
     <string name="app_name">PlaneSpot</string>
     <string name="find_button">Find Plane Near Me</string>
     <string name="find_button_loading">Loading…</string>
+    <string name="flight_not_found">Flight Not Found</string>
+    <string name="server_error">Internal Server Error</string>
+    <string name="back_button">Go Back</string>
+    <string name="destination">Base Destination Label</string>
+    <string name="origin">Base Origin Label</string>
+    <string name="airline_name">Base Airline Name</string>
+    <string name="aircraft_name">Base Aircraft Name</string>
+    <string name="flight_number">Base Flight Number</string>
+    <string name="save_button">Save Flight</string>
+    <string name="flight_speed">Ground Speed: %1$d</string>
+    <string name="flight_altitude">Altitude: %1$d</string>
+    <string name="flight_speed_unknown">Ground Speed: ---</string>
+    <string name="flight_altitude_unknown">Altitude: ---</string>
 </resources>

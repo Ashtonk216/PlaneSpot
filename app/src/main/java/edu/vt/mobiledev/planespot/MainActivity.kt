@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import edu.vt.mobiledev.planespot.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -54,28 +55,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         //Setting the find plane button and the api call so if the button is pressed the API is called
         binding.findPlaneButton.setOnClickListener {
             mainViewModel.setWaitingState(true)
             renderView()
 
             //Calling API
+            Log.d(TAG, "API call started")
             lifecycleScope.launch {
-                val location = mainViewModel.getLocation()
-                var lat = location.first
-                var lon = location.second
-                Log.d(TAG, "Location: $lat, $lon")
-                val response = mainViewModel.getFlightData(lat!!, lon!!)
-                Log.d(TAG, "Response: $response")
+                fetchFlightAndNavigate()
             }
         }
 
-
-
         renderView()
     }
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -124,6 +117,70 @@ class MainActivity : AppCompatActivity() {
         binding.findPlaneButton.text = if (mainViewModel.getButtonWaiting())
             getString(R.string.find_button_loading) else getString(R.string.find_button)
 
+        if (mainViewModel.getFlightFoundError()) {
+            binding.findPlaneButton.apply {
+                isEnabled = true
+                text = getString(R.string.flight_not_found)
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorError))
+            }
+        }
+
+        if (mainViewModel.getServerError()) {
+            binding.findPlaneButton.apply {
+                isEnabled = true
+                text = getString(R.string.server_error)
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorError))
+            }
+        }
+
 
     }
+
+
+    private fun fetchFlightAndNavigate() {
+        lifecycleScope.launch {
+            try {
+                Log.d(TAG, "fetchFlightAndNavigate()")
+                val flight = mainViewModel.getFlightData()
+                if (flight.infoLevel == "not_found") {
+                    mainViewModel.setFlightFoundError(true)
+                    renderView()
+                } else {
+                    navigateToFlightDetails() // don't reset here, we're leaving
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "API call failed", e)
+                mainViewModel.setServerError(true)
+                renderView()
+            }
+        }
+    }
+
+    private fun navigateToFlightDetails() {
+        Log.d(TAG, "navigateToFlightDetails()")
+        Log.d(TAG, "Fetching current flight data...")
+        val flight = mainViewModel.getCurrentFlightData() ?: run {
+            Log.e(TAG, "Flight is null in navigateToFlightDetails()")
+            return
+        }
+
+        val intent: Intent? = when (flight.infoLevel) {
+            "enriched" -> Intent(this, EnrichedFlightActivity::class.java)
+            "basic" -> Intent(this, BasicFlightActivity::class.java)
+            else -> null
+        }
+
+
+        intent?.putExtra("flightData", flight)?.let {
+            startActivity(it)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.setWaitingState(false)
+        renderView()
+    }
+
+
 }
