@@ -20,9 +20,6 @@
             android:name=".BasicFlightActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.theme.BasicFlightActivity"
-            android:exported="false" />
-        <activity
             android:name=".EnrichedFlightActivity"
             android:exported="false" />
         <activity
