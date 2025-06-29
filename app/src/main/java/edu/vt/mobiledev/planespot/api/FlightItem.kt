@@ -9,16 +9,16 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class FlightItem(
-    @Json(name = "aircraft_name") val aircraftName: String?,
+    @Json(name = "aircraft_name") val aircraftName: String? = null,
     @Json(name = "aircraft_type") val aircraftType: String? = null,
     val airline: String? = null,
     val altitude: Int? = null,
     val destination: String? = null,
-    val flight: String,
+    val flight: String? = null,
     @Json(name = "ground_speed") val groundSpeed: Int? = null,
     @Json(name = "info_level") val infoLevel: String,
-    val lat: Double,
-    val lon: Double,
+    val lat: Double? = null,
+    val lon: Double? = null,
     val origin: String? = null,
     val status: String? = null
 ): Parcelable

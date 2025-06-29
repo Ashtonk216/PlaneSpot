@@ -109,31 +109,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun renderView(){
-
-        //Render the Find Plane Button Based on the Status of the Find
-        binding.findPlaneButton.isEnabled = !mainViewModel.getButtonWaiting()
-        binding.findPlaneButton.text = if (mainViewModel.getButtonWaiting())
-            getString(R.string.find_button_loading) else getString(R.string.find_button)
-
+    private fun renderView() {
+        val errorColor = ContextCompat.getColorStateList(this, R.color.colorError)
+        val normalColor = ContextCompat.getColorStateList(this, R.color.colorPrimary)
         if (mainViewModel.getFlightFoundError()) {
             binding.findPlaneButton.apply {
                 isEnabled = true
                 text = getString(R.string.flight_not_found)
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorError))
+                backgroundTintList = errorColor
             }
+            return
         }
-
         if (mainViewModel.getServerError()) {
             binding.findPlaneButton.apply {
                 isEnabled = true
                 text = getString(R.string.server_error)
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorError))
+                backgroundTintList = errorColor
             }
+            return
         }
-
-
+        // Default state
+        binding.findPlaneButton.apply {
+            isEnabled = !mainViewModel.getButtonWaiting()
+            text = if (mainViewModel.getButtonWaiting())
+                getString(R.string.find_button_loading)
+            else
+                getString(R.string.find_button)
+            backgroundTintList = normalColor
+        }
     }
 
 
