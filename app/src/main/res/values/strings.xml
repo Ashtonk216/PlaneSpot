@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PlaneSpot</string>
+    <string name="find_button">Find Plane Near Me</string>
+    <string name="find_button_loading">Loading…</string>
 </resources>
