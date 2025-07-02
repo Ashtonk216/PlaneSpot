@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dark mode colors -->
     <color name="colorPrimary">#90CAF9</color>
+    <color name="colorPrimaryVariant">#42A5F5</color>
+    <color name="colorSecondary">#FFD54F</color>
     <color name="colorBackground">#121212</color>
+    <color name="colorSurface">#1E1E1E</color>
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorOnSecondary">#000000</color>
     <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#B0BEC5</color>
+    <color name="colorError">#EF9A9A</color>
 </resources>

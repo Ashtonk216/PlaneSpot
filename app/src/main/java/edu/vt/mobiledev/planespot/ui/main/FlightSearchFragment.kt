@@ -1,8 +1,10 @@
 package edu.vt.mobiledev.planespot.ui.main
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +18,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.LocationServices
 import edu.vt.mobiledev.planespot.R
+import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.databinding.FragmentFlightSearchBinding
+import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import edu.vt.mobiledev.planespot.ui.detail.BasicFlightActivity
 import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightActivity
 import kotlinx.coroutines.launch
@@ -24,12 +28,35 @@ import kotlinx.coroutines.launch
 private const val TAG = "MainActivity"
 
 class FlightSearchFragment : Fragment() {
+
+
     private var _binding: FragmentFlightSearchBinding? = null
     private val binding get() = _binding!!
 
     private val mainViewModel: MainViewModel by activityViewModels()
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+
+    private val flightDetailsLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val wasSaved = result.data?.getBooleanExtra("wasSaved", false) == true
+                if (wasSaved) {
+                    val flight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        result.data?.getParcelableExtra("flightData", FlightCard::class.java)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        result.data?.getParcelableExtra("flightData")
+                    }
+                    flight?.let {
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            Log.d(TAG, "Saving flight to database: $it")
+                            mainViewModel.addFlight(it)
+                        }
+                    }
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -100,8 +127,13 @@ class FlightSearchFragment : Fragment() {
             "enriched" -> Intent(requireContext(), EnrichedFlightActivity::class.java)
             "basic" -> Intent(requireContext(), BasicFlightActivity::class.java)
             else -> null
+        }?.apply {
+            putExtra("flightData", flight)
         }
-        intent?.putExtra("flightData", flight)?.let { startActivity(it) }
+
+        intent?.let {
+            flightDetailsLauncher.launch(it)
+        }
     }
 
 

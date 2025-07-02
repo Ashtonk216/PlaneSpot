@@ -1,6 +1,5 @@
-package edu.vt.mobiledev.planespot.ui.detail
+package edu.vt.mobiledev.planespot.ui.saved
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,62 +9,52 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import edu.vt.mobiledev.planespot.ui.detail.BasicFlightViewModel
 import edu.vt.mobiledev.planespot.R
 import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.databinding.ActivityBasicFlightBinding
+import edu.vt.mobiledev.planespot.databinding.ActivityEnrichedFlightBinding
+import edu.vt.mobiledev.planespot.databinding.ActivitySavedEnrichedFlightBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
-import java.util.Date
-import java.util.UUID
-class BasicFlightActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityBasicFlightBinding
-    private val basicFlightModel: BasicFlightViewModel by viewModels()
+import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightViewModel
+import kotlin.getValue
+
+class SavedEnrichedFlightActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySavedEnrichedFlightBinding
+    private val savedEnrichedModel: SavedEnrichedModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityBasicFlightBinding.inflate(layoutInflater)
+        binding = ActivitySavedEnrichedFlightBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        if (basicFlightModel.currentFlightData == null) {
+        if (savedEnrichedModel.currentFlightData == null) {
             val flight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                intent.getParcelableExtra("flightData", FlightItem::class.java)
+                intent.getParcelableExtra("flightData", FlightCard::class.java)
             } else {
                 @Suppress("DEPRECATION")
                 intent.getParcelableExtra("flightData")
             }
-            basicFlightModel.currentFlightData = flight
+            savedEnrichedModel.currentFlightData = flight
         }
 
-        if (basicFlightModel.currentFlightData == null) {
+        if (savedEnrichedModel.currentFlightData == null) {
             Toast.makeText(this, "Error loading flight data", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        renderData()
-
-        binding.saveButton.setOnClickListener {
-            val flight = basicFlightModel.currentFlightData
-            Toast.makeText(this, "Flight saved", Toast.LENGTH_SHORT).show()
-            val flightCard = FlightCard(
-                date = Date(),
-                altitude = flight?.altitude,
-                flight = flight?.flight,
-                groundSpeed = flight?.groundSpeed,
-                lat = flight?.lat,
-                lon = flight?.lon,
-                id = UUID.randomUUID()
-            )
+        binding.deleteButton.setOnClickListener {
+            Toast.makeText(this, "Flight deleted", Toast.LENGTH_SHORT).show()
             val resultIntent = Intent().apply {
-                putExtra("flightData", flightCard)
-                putExtra("wasSaved", true)
+                putExtra("wasDeleted", true)
+                putExtra("flightData", savedEnrichedModel.currentFlightData)
             }
             setResult(RESULT_OK, resultIntent)
             finish()
@@ -74,15 +63,22 @@ class BasicFlightActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
+
+        renderData()
+
     }
 
     private fun renderData() {
-        if (!basicFlightModel.saveButtonEanbled) {
-            binding.saveButton.isEnabled = false
+        if (!savedEnrichedModel.deleteButtonEnabled) {
+            binding.deleteButton.isEnabled = false
             return
         }
-        val flight = basicFlightModel.currentFlightData
+        val flight = savedEnrichedModel.currentFlightData
         binding.flightNumber.text = flight?.flight
+        binding.aircraftName.text = flight?.aircraftName
+        binding.airlineName.text = flight?.airline
+        binding.origin.text = flight?.origin
+        binding.destination.text = flight?.destination
         binding.flightSpeed.text = flight?.groundSpeed?.let {
             getString(R.string.flight_speed, it)
         } ?: getString(R.string.flight_speed_unknown)
@@ -90,4 +86,5 @@ class BasicFlightActivity : AppCompatActivity() {
             getString(R.string.flight_altitude, it)
         } ?: getString(R.string.flight_altitude_unknown)
     }
+
 }

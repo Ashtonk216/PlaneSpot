@@ -1,7 +1,10 @@
 package edu.vt.mobiledev.planespot.ui.detail
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -12,7 +15,10 @@ import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightViewModel
 import edu.vt.mobiledev.planespot.R
 import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.databinding.ActivityEnrichedFlightBinding
-
+import edu.vt.mobiledev.planespot.ui.component.FlightCard
+import java.util.Date
+import java.util.UUID
+val TAG = "EnrichedFlightActivity"
 class EnrichedFlightActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEnrichedFlightBinding
@@ -31,26 +37,46 @@ class EnrichedFlightActivity : AppCompatActivity() {
         }
 
         // Get flight from intent
-        val flight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra("flightData", FlightItem::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra("flightData")
+        if (enrichedFlightModel.currentFlightData == null) {
+            val flight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra("flightData", FlightItem::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra("flightData")
+            }
+            enrichedFlightModel.currentFlightData = flight
         }
 
-        if (flight == null) {
+        if (enrichedFlightModel.currentFlightData == null) {
             Toast.makeText(this, "Error loading flight data", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        enrichedFlightModel.currentFlightData = flight
-
         renderData()
 
         binding.saveButton.setOnClickListener {
-            Toast.makeText(this, "Flight saved (not implemented)", Toast.LENGTH_SHORT).show()
-            // TODO: implement saving flight to disk/database
+            Toast.makeText(this, "Flight saved", Toast.LENGTH_SHORT).show()
+            val flight = enrichedFlightModel.currentFlightData
+            val flightCard = FlightCard(
+                date = Date(),
+                airline = flight?.airline,
+                aircraftName = flight?.aircraftName,
+                altitude = flight?.altitude,
+                destination = flight?.destination,
+                flight = flight?.flight,
+                groundSpeed = flight?.groundSpeed,
+                lat = flight?.lat,
+                lon = flight?.lon,
+                origin = flight?.origin,
+                id = UUID.randomUUID()
+            )
+            val resultIntent = Intent().apply {
+                putExtra("flightData", flightCard)
+                putExtra("wasSaved", true)
+            }
+            setResult(RESULT_OK, resultIntent)
+            finish()
         }
 
         binding.backButton.setOnClickListener {
@@ -59,6 +85,10 @@ class EnrichedFlightActivity : AppCompatActivity() {
     }
 
     private fun renderData() {
+        if (!enrichedFlightModel.saveButtonEanbled) {
+            binding.saveButton.isEnabled = false
+            return
+        }
         val flight = enrichedFlightModel.currentFlightData
         binding.flightNumber.text = flight?.flight
         binding.aircraftName.text = flight?.aircraftName

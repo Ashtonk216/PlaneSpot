@@ -1,14 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="?attr/colorSurface">
 
     <TextView
         android:id="@+id/flight_number"
         android:layout_width="match_parent"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:text="@string/flight_not_found"/>
+        android:text="@string/flight_not_found"
+        android:textSize="20sp"
+        android:textColor="?attr/colorSecondary"/>
+
+
 
     <TextView
         android:id="@+id/save_date"

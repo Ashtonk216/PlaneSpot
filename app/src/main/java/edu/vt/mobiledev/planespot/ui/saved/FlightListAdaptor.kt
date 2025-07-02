@@ -12,7 +12,10 @@ class FlightHolder(
 
 }
 
-class FlightListAdapter(private val flights: List<FlightCard>) : RecyclerView.Adapter<FlightHolder>() {
+class FlightListAdapter(
+    private val flights: List<FlightCard>,
+    private val onFlightClick: (FlightCard) -> Unit
+) : RecyclerView.Adapter<FlightHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -31,6 +34,11 @@ class FlightListAdapter(private val flights: List<FlightCard>) : RecyclerView.Ad
             binding.flightNumber.text = flight.flight
             binding.saveDate.text = flight.date.toString()
         }
+
+        holder.itemView.setOnClickListener {
+            onFlightClick(flight)
+        }
+
     }
 
     override fun getItemCount() = flights.size

@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val mainViewModel: MainViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-class CriminalIntentApplication : Application() {
+class FlightTrackerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         FlightRepository.initialize(this)

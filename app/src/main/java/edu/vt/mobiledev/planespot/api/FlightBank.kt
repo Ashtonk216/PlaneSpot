@@ -1,15 +1,12 @@
-package edu.vt.mobiledev.planespot
+package edu.vt.mobiledev.planespot.api
 
 import com.squareup.moshi.Moshi
-import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.api.PlaneSpotApi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 //Define as a Singleton. Only one call being made at a time
-object FlightRepository {
+object FlightBank {
     private val moshi = Moshi.Builder().build()
 
     private val retrofit: Retrofit = Retrofit.Builder()

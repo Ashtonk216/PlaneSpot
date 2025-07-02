@@ -2,8 +2,10 @@ package edu.vt.mobiledev.planespot.ui.main
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import edu.vt.mobiledev.planespot.FlightRepository
+import edu.vt.mobiledev.planespot.db.FlightRepository
 import edu.vt.mobiledev.planespot.api.FlightItem
+import edu.vt.mobiledev.planespot.ui.component.FlightCard
+import edu.vt.mobiledev.planespot.api.FlightBank
 
 private const val TAG = "SearchAcvtivity"
 
@@ -15,6 +17,12 @@ class MainViewModel : ViewModel() {
     private var currentLat: Double? = null
     private var currentLon: Double? = null
     private var currentFlightData: FlightItem? = null
+    private val flightRepository = FlightRepository.get()
+
+
+    suspend fun addFlight(flight: FlightCard) {
+        flightRepository.addFlight(flight)
+    }
 
     fun setWaitingState(waiting: Boolean) {
         isWaiting = waiting
@@ -41,7 +49,7 @@ class MainViewModel : ViewModel() {
             throw IllegalStateException("Location not set before fetching flight data")
         }
         Log.d("MainViewModel", "Fetching flight data for: $lat, $lon")
-        val flight = FlightRepository.getFlightData(lat, lon)
+        val flight = FlightBank.getFlightData(lat, lon)
         Log.d("MainViewModel", "Received flight: ${flight.flight}, infoLevel: ${flight.infoLevel}")
         currentFlightData = flight
         return flight
