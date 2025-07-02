@@ -18,7 +18,7 @@ class SavedFlightFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visible?"
         }
 
-    private val flightListViewModel: FlightListViewModel by viewModels()
+    private val flightListViewModel: SavedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
