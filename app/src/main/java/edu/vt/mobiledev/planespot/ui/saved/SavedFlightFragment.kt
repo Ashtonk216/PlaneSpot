@@ -21,6 +21,8 @@ const val TAG = "SavedFlightFragment"
 
 class SavedFlightFragment : Fragment() {
 
+    //Launcher for the saved flight details activity. Gets whether the flight was deleted or not.
+    //If it was deleted, it will delete the flight from the database and reload the list.
     private val savedFlightDetailsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -77,6 +79,8 @@ class SavedFlightFragment : Fragment() {
         _binding = null
     }
 
+
+    //Loads the flights from the database and creates the adapter for the recycler view.
     private suspend fun loadFlights() {
         val flights = flightListViewModel.loadFlights()
         val adapter = FlightListAdapter(flights) { clickedFlight ->

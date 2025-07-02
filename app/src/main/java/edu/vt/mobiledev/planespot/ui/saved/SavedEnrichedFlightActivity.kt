@@ -14,6 +14,8 @@ import edu.vt.mobiledev.planespot.databinding.ActivitySavedEnrichedFlightBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import kotlin.getValue
 
+//Similar class to the enriched flight activity but for the saved flights. This allows user to delete
+//saved flights and return to the main activity.
 class SavedEnrichedFlightActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySavedEnrichedFlightBinding

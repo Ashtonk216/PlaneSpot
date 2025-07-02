@@ -7,11 +7,13 @@ import androidx.room.TypeConverters
 import androidx.room.Room
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 
+//FlightDatabase for Room Database
 @Database(
     entities = [FlightCard::class],
     version = 1,
     exportSchema = false
 )
+//FlightTypeConverters for Room Database that convert dates and UUIDs to strings
 @TypeConverters(FlightTypeConverters::class)
 abstract class FlightDatabase : RoomDatabase() {
 

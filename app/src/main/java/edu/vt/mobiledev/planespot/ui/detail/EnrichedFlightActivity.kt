@@ -51,6 +51,7 @@ class EnrichedFlightActivity : AppCompatActivity() {
 
         renderData()
 
+        // Save button click listener that tells the parent activity to save the flight
         binding.saveButton.setOnClickListener {
             Toast.makeText(this, "Flight saved", Toast.LENGTH_SHORT).show()
             val flight = enrichedFlightModel.currentFlightData

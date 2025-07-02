@@ -16,6 +16,7 @@ import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import java.util.Date
 import java.util.UUID
 class BasicFlightActivity : AppCompatActivity() {
+    //Binding and Model
     private lateinit var binding: ActivityBasicFlightBinding
     private val basicFlightModel: BasicFlightViewModel by viewModels()
 
@@ -31,6 +32,7 @@ class BasicFlightActivity : AppCompatActivity() {
             insets
         }
 
+        //if the model already has a flight, render it. If not, get it from the intent
         if (basicFlightModel.currentFlightData == null) {
             val flight = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 intent.getParcelableExtra("flightData", FlightItem::class.java)
@@ -41,14 +43,17 @@ class BasicFlightActivity : AppCompatActivity() {
             basicFlightModel.currentFlightData = flight
         }
 
+        //if the flight is null, finish the activity
         if (basicFlightModel.currentFlightData == null) {
             Toast.makeText(this, "Error loading flight data", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
+        //Render the data from the flight
         renderData()
 
+        //The save button adds the intent to save a flight to the database. Also Finishes the activity
         binding.saveButton.setOnClickListener {
             val flight = basicFlightModel.currentFlightData
             Toast.makeText(this, "Flight saved", Toast.LENGTH_SHORT).show()
@@ -75,7 +80,7 @@ class BasicFlightActivity : AppCompatActivity() {
     }
 
     private fun renderData() {
-        if (!basicFlightModel.saveButtonEanbled) {
+        if (!basicFlightModel.saveButtonEnabled) {
             binding.saveButton.isEnabled = false
             return
         }

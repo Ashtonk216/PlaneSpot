@@ -8,6 +8,7 @@ import androidx.room.Query
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import java.util.UUID
 
+//FlightDao for Room Database
 @Dao
 interface FlightDao {
     @Query("SELECT * FROM flights")

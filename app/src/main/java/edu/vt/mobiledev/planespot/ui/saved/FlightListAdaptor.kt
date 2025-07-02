@@ -11,7 +11,7 @@ class FlightHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
 }
-
+//Adapter for the recycler view
 class FlightListAdapter(
     private val flights: List<FlightCard>,
     private val onFlightClick: (FlightCard) -> Unit

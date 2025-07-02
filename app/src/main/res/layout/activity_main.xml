@@ -6,14 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground"
+    android:fitsSystemWindows="false"
     tools:context=".ui.main.MainActivity">
 
+    <!-- Fragment container to swap between search and saved flights -->
     <!-- Fragment container to swap between search and saved flights -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
@@ -26,7 +29,7 @@
         app:itemIconTint="?attr/colorPrimary"
         app:itemTextColor="?android:textColor"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav" />
-
+        app:menu="@menu/bottom_nav"
+        app:elevation="0dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,7 +7,7 @@ import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import edu.vt.mobiledev.planespot.api.FlightBank
 
-
+//View model for the search fragment class
 class MainViewModel : ViewModel() {
 
     private var isWaiting: Boolean = false
@@ -18,7 +18,7 @@ class MainViewModel : ViewModel() {
     private var currentFlightData: FlightItem? = null
     private val flightRepository = FlightRepository.get()
 
-
+    //Databse Calls
     suspend fun addFlight(flight: FlightCard) {
         flightRepository.addFlight(flight)
     }
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
         currentLon = lon
     }
 
-
+    //API Call
     suspend fun getFlightData(): FlightItem {
         val lat = currentLat
         val lon = currentLon
@@ -51,7 +51,7 @@ class MainViewModel : ViewModel() {
         return flight
     }
 
-
+    //Functional calls for ui continuity
     fun getCurrentFlightData(): FlightItem? {
         return currentFlightData
     }

@@ -14,6 +14,8 @@ import edu.vt.mobiledev.planespot.databinding.ActivitySavedBasicFlightBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import kotlin.getValue
 
+//Similar class to the basic flight activity but for the saved flights. This allows user to delete
+//saved flights and return to the main activity.
 class SavedBasicFlightActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySavedBasicFlightBinding

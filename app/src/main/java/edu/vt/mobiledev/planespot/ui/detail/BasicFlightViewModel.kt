@@ -5,5 +5,5 @@ import edu.vt.mobiledev.planespot.api.FlightItem
 
 class BasicFlightViewModel : ViewModel() {
     var currentFlightData: FlightItem? = null
-    var saveButtonEanbled = true
+    var saveButtonEnabled = true
 }

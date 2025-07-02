@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import edu.vt.mobiledev.planespot.db.FlightRepository
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 
-
+//ViewModel for the saved flights fragment. Mostly just calls the flight repository to get the
+//flights from the database. Also handles deletion
 class SavedViewModel : ViewModel() {
     private val flightRepository = FlightRepository.get()
 

@@ -7,6 +7,7 @@ import java.util.Date
 import java.util.UUID
 import kotlinx.parcelize.Parcelize
 
+//Flight card is the implementation of a flight object that is being displayed in the recycler view.
 @Entity(tableName = "flights")
 @Parcelize
 data class FlightCard(

@@ -24,17 +24,25 @@ import edu.vt.mobiledev.planespot.ui.detail.BasicFlightActivity
 import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightActivity
 import kotlinx.coroutines.launch
 
+//Class that is the original main class and acts as the "home" of the app where the user is
+//taken to first and where the primary functionality of the app is
 private const val TAG = "MainActivity"
 
 class FlightSearchFragment : Fragment() {
 
-
+    //Binding for the fragment
     private var _binding: FragmentFlightSearchBinding? = null
     private val binding get() = _binding!!
 
+    //Because this class was originally part of the main activity, the model is still named the
+    //main model
     private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
+    //Launcher for flight details activity. If the user clicked the save button the flight
+    //information is sent back to the main activity. If the user clicked the back button, the
+    //flight information is not sent back to the main activity. (May be better to get info from
+    //current flight but this works because the activity builds the flight card from the flight item)
     private val flightDetailsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -63,6 +71,7 @@ class FlightSearchFragment : Fragment() {
         return binding.root
     }
 
+    //Initial setup for the fragment. Also gets the last known location of the user and permissions
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,10 +90,10 @@ class FlightSearchFragment : Fragment() {
             mainViewModel.setWaitingState(true)
             renderView()
 
-            //Calling API
-            Log.d(TAG, "API call started")
-            lifecycleScope.launch {
-                fetchFlightAndNavigate()
+            getLastKnownLocation {
+                lifecycleScope.launch {
+                    fetchFlightAndNavigate()
+                }
             }
         }
 
@@ -97,7 +106,8 @@ class FlightSearchFragment : Fragment() {
         _binding = null
     }
 
-    private fun getLastKnownLocation() {
+    //Gets the last known location of the user but requires the permissions check to be completed
+    private fun getLastKnownLocation(onComplete: (() -> Unit)? = null) {
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -110,15 +120,18 @@ class FlightSearchFragment : Fragment() {
                     val lon = location.longitude
                     Log.d(TAG, "Got location: $lat, $lon")
                     mainViewModel.setLocation(lat, lon)
+                    onComplete?.invoke()
                 } else {
                     Log.e(TAG, "Location is null")
+                    onComplete?.invoke()
                 }
             }
         } else {
-            Log.w(TAG, "Location permission not granted in getLastKnownLocation()")
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         }
     }
 
+    //Starts the flight details activity and passes the flight data to it
     private fun navigateToFlightDetails() {
         val flight = mainViewModel.getCurrentFlightData() ?: return
         val intent = when (flight.infoLevel) {
@@ -192,6 +205,8 @@ class FlightSearchFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         mainViewModel.setWaitingState(false)
+        mainViewModel.setFlightFoundError(false)
+        mainViewModel.setServerError(false)
         renderView()
     }
 }

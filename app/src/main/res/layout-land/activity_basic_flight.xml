@@ -28,63 +28,15 @@
             android:text="@string/flight_number"
             android:paddingBottom="8dp" />
 
-        <TextView
-            android:id="@+id/aircraft_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="@string/aircraft_name"
-            android:paddingBottom="16dp" />
-
-        <TextView
-            android:id="@+id/airline_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="16sp"
-            android:text="@string/airline_name"
-            android:paddingBottom="16dp" />
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5" />
 
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp">
-
-
-            <TextView
-                android:id="@+id/origin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:text="@string/origin" />
-
-            <ImageView
-                android:id="@+id/arrowIcon"
-                android:contentDescription="@string/arrow_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/outline_arrow_forward_24"
-                android:paddingHorizontal="8dp" />
-
-            <TextView
-                android:id="@+id/destination"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/destination" />
-        </LinearLayout>
-
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">
-
 
                 <TextView
                     android:id="@+id/flight_speed"
@@ -133,12 +84,12 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight=".5" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:gravity="center">
 
             <Button
@@ -146,6 +97,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save_button" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="0dp"/>
 
             <Button
                 android:id="@+id/back_button"

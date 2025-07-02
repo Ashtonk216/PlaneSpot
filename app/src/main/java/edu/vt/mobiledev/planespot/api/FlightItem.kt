@@ -6,6 +6,10 @@ import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 
 
+//This class creates flight items. Flight items are different than FlightCards. FlightItems
+//Are defined and parsed by moshi from the json given by the api. When the screen after a flight is
+//initially found is displayed it is being displayed as a FlightItem. When the flight is saved
+//it is being displayed as a FlightCard.
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class FlightItem(
