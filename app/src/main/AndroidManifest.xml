@@ -17,13 +17,13 @@
         android:theme="@style/Theme.PlaneSpot"
         tools:targetApi="31">
         <activity
-            android:name=".BasicFlightActivity"
+            android:name=".ui.detail.BasicFlightActivity"
             android:exported="false" />
         <activity
-            android:name=".EnrichedFlightActivity"
+            android:name=".ui.detail.EnrichedFlightActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PlaneSpot">
             <intent-filter>

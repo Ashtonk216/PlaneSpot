@@ -1,11 +1,11 @@
-package edu.vt.mobiledev.planespot
+package edu.vt.mobiledev.planespot.ui.main
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import edu.vt.mobiledev.planespot.FlightRepository
 import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.api.PlaneSpotApi
-import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+
+private const val TAG = "SearchAcvtivity"
 
 class MainViewModel : ViewModel() {
 

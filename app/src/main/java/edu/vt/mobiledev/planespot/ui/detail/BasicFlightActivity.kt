@@ -1,28 +1,26 @@
-package edu.vt.mobiledev.planespot
+package edu.vt.mobiledev.planespot.ui.detail
 
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import edu.vt.mobiledev.planespot.ui.detail.BasicFlightViewModel
+import edu.vt.mobiledev.planespot.R
 import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.databinding.ActivityEnrichedFlightBinding
-import android.util.Log
-import android.widget.Toast
+import edu.vt.mobiledev.planespot.databinding.ActivityBasicFlightBinding
 
-class EnrichedFlightActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityEnrichedFlightBinding
-    private val enrichedFlightModel: EnrichedFlightViewModel by viewModels()
+class BasicFlightActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBasicFlightBinding
+    private val basicFlightModel: BasicFlightViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityEnrichedFlightBinding.inflate(layoutInflater)
+        binding = ActivityBasicFlightBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -45,7 +43,7 @@ class EnrichedFlightActivity : AppCompatActivity() {
             return
         }
 
-        enrichedFlightModel.currentFlightData = flight
+        basicFlightModel.currentFlightData = flight
 
         renderData()
 
@@ -60,12 +58,8 @@ class EnrichedFlightActivity : AppCompatActivity() {
     }
 
     private fun renderData() {
-        val flight = enrichedFlightModel.currentFlightData
+        val flight = basicFlightModel.currentFlightData
         binding.flightNumber.text = flight?.flight
-        binding.aircraftName.text = flight?.aircraftName
-        binding.airlineName.text = flight?.airline
-        binding.origin.text = flight?.origin
-        binding.destination.text = flight?.destination
         binding.flightSpeed.text = flight?.groundSpeed?.let {
             getString(R.string.flight_speed, it)
         } ?: getString(R.string.flight_speed_unknown)

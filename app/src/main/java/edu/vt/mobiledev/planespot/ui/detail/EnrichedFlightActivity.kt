@@ -1,4 +1,4 @@
-package edu.vt.mobiledev.planespot
+package edu.vt.mobiledev.planespot.ui.detail
 
 import android.os.Build
 import android.os.Bundle
@@ -8,19 +8,20 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightViewModel
+import edu.vt.mobiledev.planespot.R
 import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.databinding.ActivityBasicFlightBinding
 import edu.vt.mobiledev.planespot.databinding.ActivityEnrichedFlightBinding
-import kotlin.getValue
 
-class BasicFlightActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityBasicFlightBinding
-    private val basicFlightModel: BasicFlightViewModel by viewModels()
+class EnrichedFlightActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEnrichedFlightBinding
+    private val enrichedFlightModel: EnrichedFlightViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityBasicFlightBinding.inflate(layoutInflater)
+        binding = ActivityEnrichedFlightBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -43,7 +44,7 @@ class BasicFlightActivity : AppCompatActivity() {
             return
         }
 
-        basicFlightModel.currentFlightData = flight
+        enrichedFlightModel.currentFlightData = flight
 
         renderData()
 
@@ -58,8 +59,12 @@ class BasicFlightActivity : AppCompatActivity() {
     }
 
     private fun renderData() {
-        val flight = basicFlightModel.currentFlightData
+        val flight = enrichedFlightModel.currentFlightData
         binding.flightNumber.text = flight?.flight
+        binding.aircraftName.text = flight?.aircraftName
+        binding.airlineName.text = flight?.airline
+        binding.origin.text = flight?.origin
+        binding.destination.text = flight?.destination
         binding.flightSpeed.text = flight?.groundSpeed?.let {
             getString(R.string.flight_speed, it)
         } ?: getString(R.string.flight_speed_unknown)

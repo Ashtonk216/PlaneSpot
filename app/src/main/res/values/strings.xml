@@ -15,4 +15,9 @@
     <string name="flight_altitude">Altitude: %1$d</string>
     <string name="flight_speed_unknown">Ground Speed: ---</string>
     <string name="flight_altitude_unknown">Altitude: ---</string>
+    <string name="arrow_icon">Arrow Icon</string>
+    <string name="delete_button">Delete FLight</string>
+    <string name="search_menu_string">Search Flight</string>
+    <string name="saved_menu_string">Saved Flights</string>
+    <string name="date_unknown">Random Date</string>
 </resources>

@@ -1,4 +1,4 @@
-package edu.vt.mobiledev.planespot
+package edu.vt.mobiledev.planespot.ui.detail
 
 import androidx.lifecycle.ViewModel
 import edu.vt.mobiledev.planespot.api.FlightItem
