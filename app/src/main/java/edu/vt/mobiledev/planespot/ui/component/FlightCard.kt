@@ -1,12 +1,10 @@
 package edu.vt.mobiledev.planespot.ui.component
 
 import android.os.Parcelable
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
 import java.util.UUID
-import androidx.room.TypeConverter
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "flights")

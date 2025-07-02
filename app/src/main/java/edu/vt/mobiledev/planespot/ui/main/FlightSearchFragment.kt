@@ -18,7 +18,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.LocationServices
 import edu.vt.mobiledev.planespot.R
-import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.databinding.FragmentFlightSearchBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import edu.vt.mobiledev.planespot.ui.detail.BasicFlightActivity
@@ -34,7 +33,6 @@ class FlightSearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private val flightDetailsLauncher =

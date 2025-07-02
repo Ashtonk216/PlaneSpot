@@ -1,8 +1,6 @@
 package edu.vt.mobiledev.planespot.db
 
-import android.app.Application
 import android.content.Context
-import androidx.room.Room
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import java.util.UUID
 import android.util.Log

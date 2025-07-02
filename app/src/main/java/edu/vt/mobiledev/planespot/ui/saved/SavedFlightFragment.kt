@@ -12,12 +12,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.vt.mobiledev.planespot.databinding.FragmentFlightListBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
-import edu.vt.mobiledev.planespot.ui.detail.BasicFlightActivity
-import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightActivity
 import kotlinx.coroutines.launch
 
 const val TAG = "SavedFlightFragment"

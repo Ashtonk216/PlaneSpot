@@ -10,11 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import edu.vt.mobiledev.planespot.R
-import edu.vt.mobiledev.planespot.api.FlightItem
-import edu.vt.mobiledev.planespot.databinding.ActivityBasicFlightBinding
 import edu.vt.mobiledev.planespot.databinding.ActivitySavedBasicFlightBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
-import edu.vt.mobiledev.planespot.ui.detail.BasicFlightViewModel
 import kotlin.getValue
 
 class SavedBasicFlightActivity : AppCompatActivity() {

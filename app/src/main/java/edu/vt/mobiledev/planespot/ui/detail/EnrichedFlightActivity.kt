@@ -1,24 +1,20 @@
 package edu.vt.mobiledev.planespot.ui.detail
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import edu.vt.mobiledev.planespot.ui.detail.EnrichedFlightViewModel
 import edu.vt.mobiledev.planespot.R
 import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.databinding.ActivityEnrichedFlightBinding
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import java.util.Date
 import java.util.UUID
-val TAG = "EnrichedFlightActivity"
 class EnrichedFlightActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEnrichedFlightBinding

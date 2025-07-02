@@ -7,7 +7,6 @@ import edu.vt.mobiledev.planespot.api.FlightItem
 import edu.vt.mobiledev.planespot.ui.component.FlightCard
 import edu.vt.mobiledev.planespot.api.FlightBank
 
-private const val TAG = "SearchAcvtivity"
 
 class MainViewModel : ViewModel() {
 
@@ -37,9 +36,6 @@ class MainViewModel : ViewModel() {
         currentLon = lon
     }
 
-    fun getLocation(): Pair<Double?, Double?> {
-        return Pair(currentLat, currentLon)
-    }
 
     suspend fun getFlightData(): FlightItem {
         val lat = currentLat
