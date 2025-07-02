@@ -2,7 +2,6 @@ package edu.vt.mobiledev.planespot.ui.main
 
 import android.app.Application
 import android.os.Bundle
-import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.fragment.findNavController
