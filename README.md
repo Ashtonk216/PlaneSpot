@@ -59,23 +59,36 @@ Demo Video:
 https://github.com/user-attachments/assets/632f26fd-b0da-4dff-8272-b9bc259c4b8c
 
 Working Features:
-Finding Flight Closest to You,
-Saving closest flight details,
-Recalling previous flight details,
-Deleting previously captured flights,
+Finding Flight Closest to You
+
+Saving closest flight details
+
+Recalling previous flight details
+
+Deleting previously captured flights
+
 Night mode
 
 Issues or Limitations:
-Rate limiting on the backend with 3rd party apis being expensive,
-Some UI bugs with landscape mode (has to do with handling top bar in portrait mode),
-Small delay in airplane information (backend issue with how up to date api data may or may not be),
+Rate limiting on the backend with 3rd party apis being expensive
+
+Some UI bugs with landscape mode (has to do with handling top bar in portrait mode)
+
+Small delay in airplane information (backend issue with how up to date api data may or may not be)
+
 Flights get labled as enriched so the more detailed flight info is displayed without all information availible (This is ok to show just shows up as odd sometimes)
 
+
 Future Development Possibilities:
+
 Backup online database with user logins and simple desktop website
+
 Image Api implementation that shows pictures of planes that you spotted
+
 Taking pictures of plane within app and attaching the closest flight data to it
+
 Background searching for flights and notifications for users who want to know when an aircraft gets within a specific range
+
 
 Contact info:
 ashtonk216@vt.edu
