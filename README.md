@@ -38,19 +38,19 @@ Night Mode:
 
 Technology List:
 App:
-    View Binding
-    View Models
-    Room DB
-    Jetpack Navigation Bar
-    Fragments
-    Moshi
-    Retrofit
-    Recycler View
-    Api Accesss
+    View Binding,
+    View Models,
+    Room DB,
+    Jetpack Navigation Bar,
+    Fragments,
+    Moshi,
+    Retrofit,
+    Recycler View,
+    Api Accesss,
     Intents
 Api:
-    Flask
-    Redis
+    Flask,
+    Redis,
     SQLite Database
 
 Demo Video:
@@ -58,6 +58,18 @@ Demo Video:
 
 https://github.com/user-attachments/assets/632f26fd-b0da-4dff-8272-b9bc259c4b8c
 
+Working Features:
+Finding Flight Closest to You,
+Saving closest flight details,
+Recalling previous flight details,
+Deleting previously captured flights,
+Night mode
+
+Issues or Limitations:
+Rate limiting on the backend with 3rd party apis being expensive,
+Some UI bugs with landscape mode (has to do with handling top bar in portrait mode),
+Small delay in airplane information (backend issue with how up to date api data may or may not be),
+Flights get labled as enriched so the more detailed flight info is displayed without all information availible (This is ok to show just shows up as odd sometimes)
 
 Future Development Possibilities:
 Backup online database with user logins and simple desktop website
@@ -71,7 +83,39 @@ ashtonk216@vt.edu
 
 API Repo (Not much documentation but not many files either)
 https://github.com/Ashtonk216/flightapi
-Endpoint: ashtonashton.net/get-flight/lat/<latittude>/lon/<longitude>
+Endpoint: ashtonashton.net/get-flight/lat/<latittude>/lon/<longitude> 
+Will return JSON as either an enriched flight or basic flight.
+
+Enriched:
+{
+  "aircraft_name": "Boeing 737 MAX 9",
+  "aircraft_type": "B39M",
+  "airline": "United Airlines",
+  "altitude": 1150,
+  "destination": "San Diego Intl",
+  "flight": "UAL2710",
+  "ground_speed": 189,
+  "info_level": "enriched",
+  "lat": 38.910599,
+  "lon": -77.43779,
+  "origin": "Washington Dulles Intl",
+  "status": "En Route / On Time"
+}
+
+Basic:
+{
+  "altitude": 650,
+  "flight": "RPA3300",
+  "ground_speed": 123,
+  "info_level": "basic",
+  "lat": 38.915901,
+  "lon": -77.460083
+}
+
+No Flight Found:
+{
+  "info_level": "not_found",
+}
 
 
 
