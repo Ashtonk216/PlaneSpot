@@ -11,8 +11,8 @@
     <string name="aircraft_name">Base Aircraft Name</string>
     <string name="flight_number">Base Flight Number</string>
     <string name="save_button">Save Flight</string>
-    <string name="flight_speed">Ground Speed: %1$d</string>
-    <string name="flight_altitude">Altitude: %1$d</string>
+    <string name="flight_speed">Ground Speed: %1$d kts</string>
+    <string name="flight_altitude">Altitude: %1$d ft</string>
     <string name="flight_speed_unknown">Ground Speed: ---</string>
     <string name="flight_altitude_unknown">Altitude: ---</string>
     <string name="arrow_icon">Arrow Icon</string>
