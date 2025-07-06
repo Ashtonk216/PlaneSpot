@@ -37,6 +37,7 @@ Night Mode:
 
 
 Technology List:
+
 App:
 
     View Binding
@@ -74,6 +75,7 @@ Demo Video:
 https://github.com/user-attachments/assets/632f26fd-b0da-4dff-8272-b9bc259c4b8c
 
 Working Features:
+
 Finding Flight Closest to You
 
 Saving closest flight details
