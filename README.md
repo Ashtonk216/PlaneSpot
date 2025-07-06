@@ -16,18 +16,23 @@ location issue for PlaneSpot.
 Feature List:
 
 Flight Finding:
+
 <img width="267" alt="image" src="https://github.com/user-attachments/assets/b1f6b7a1-9adf-40a9-b432-679e46563f29" />
 
 Flight Information Display:
+
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/7385647c-f424-46e4-9101-5e8656eefcf6" />
 
 Saved Flight Recycler View:
+
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/a51cdb7c-609e-4e57-9663-e1cde460e2a0" />
 
 Saved Flight View (Also Demonstrating Landscape Compatibility):
+
 <img width="473" alt="image" src="https://github.com/user-attachments/assets/30581b6c-3e44-480f-ac6e-7a4322afc25c" />
 
 Night Mode:
+
 <img width="268" alt="image" src="https://github.com/user-attachments/assets/929438e6-8714-4027-becb-6b5bea5ae238" />
 
 
