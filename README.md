@@ -86,6 +86,7 @@ Deleting previously captured flights
 
 Night mode
 
+
 Issues or Limitations:
 Rate limiting on the backend with 3rd party apis being expensive
 
@@ -94,6 +95,7 @@ Some UI bugs with landscape mode (has to do with handling top bar in portrait mo
 Small delay in airplane information (backend issue with how up to date api data may or may not be)
 
 Flights get labled as enriched so the more detailed flight info is displayed without all information availible (This is ok to show just shows up as odd sometimes)
+
 
 
 Future Development Possibilities:
@@ -107,16 +109,20 @@ Taking pictures of plane within app and attaching the closest flight data to it
 Background searching for flights and notifications for users who want to know when an aircraft gets within a specific range
 
 
+
 Contact info:
 ashtonk216@vt.edu
 304-620-2474
+
 
 API Repo (Not much documentation but not many files either)
 https://github.com/Ashtonk216/flightapi
 Endpoint: ashtonashton.net/get-flight/lat/<latittude>/lon/<longitude> 
 Will return JSON as either an enriched flight or basic flight.
 
+
 Enriched:
+
 {
   "aircraft_name": "Boeing 737 MAX 9",
   "aircraft_type": "B39M",
@@ -132,7 +138,9 @@ Enriched:
   "status": "En Route / On Time"
 }
 
+
 Basic:
+
 {
   "altitude": 650,
   "flight": "RPA3300",
@@ -142,7 +150,9 @@ Basic:
   "lon": -77.460083
 }
 
+
 No Flight Found:
+
 {
   "info_level": "not_found",
 }
