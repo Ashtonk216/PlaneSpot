@@ -38,20 +38,35 @@ Night Mode:
 
 Technology List:
 App:
-    View Binding,
-    View Models,
-    Room DB,
-    Jetpack Navigation Bar,
-    Fragments,
-    Moshi,
-    Retrofit,
-    Recycler View,
-    Api Accesss,
+
+    View Binding
+    
+    View Models
+    
+    Room DB
+    
+    Jetpack Navigation Bar
+    
+    Fragments
+    
+    Moshi
+    
+    Retrofit
+    
+    Recycler View
+    
+    Api Accesss
+    
     Intents
+    
 Api:
-    Flask,
-    Redis,
+
+    Flask
+    
+    Redis
+    
     SQLite Database
+    
 
 Demo Video:
 
