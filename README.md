@@ -31,6 +31,11 @@ Night Mode:
 
 <img width="268" alt="image" src="https://github.com/user-attachments/assets/929438e6-8714-4027-becb-6b5bea5ae238" />
 
+Basic Flight Screen (For flights with less information):
+
+<img width="344" alt="Screenshot 2025-07-08 at 1 58 27 PM" src="https://github.com/user-attachments/assets/f0c23dd4-57fd-4b3e-a82b-1e70d668479d" />
+
+
 
 Technology List:
 
