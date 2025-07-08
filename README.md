@@ -1,33 +1,29 @@
 Description and Purpose:
-PlaneSpot is a plane spotting and discovery app that allows users to find the plane that is closes to them. The app includes a find flight button that a user clicks to find the plane that
+PlaneSpot is a plane spotting and discovery app that allows users to find the plane that is closest to them. The app includes a find flight button that a user clicks to find the plane that
 appears closest to them. After clicking that button a user will see details about the flight and be allowed to save the flight on a local room database. Users can then go to another tab using
 the navigation bar at the bottom and a recycler view will show all of the flights that have been saved. If a user clicks on the label for a flight they will see the details of the flight and
-they can delete the flight from the database. The purpose of this app is for curious people and plane spotting enthusiests who want to see the plane that is closest to them. 
+they can delete the flight from the database. The purpose of this app is for curious people and plane spotting enthusiests who want to see the plane that is closest to them and learn more about the world around them.
 
 Installation and setup:
-Users who want to use the app will simply install the app and once opened users will be prompted for their location. The app only requires location when actively using it so that option will work
-when promted. Then the app will be availbile for users to use completely. For developers the app requires pulling from the github and making sure gradle dependancies are initialized properly. 
-Then, developers should be able to effectively switch to/create their own branch for development work. Developers are encouraged to not excessively use the find plane button when the custom api is not 
-not set to debug mode (where other internal APIs will not be called), and are ecouraged to develop without using it as much as possible. Also, clicking the find plane button repeadedly will result 
-in automatic rate limiting by the custom api. Developers who use an emulator within android studio must set their location in the emulator configuration for the app to work. If there are still
-issues navigate to google maps on the emulator and click the target button to center on your location. You will be promted to turn on location services for the device which should fix the 
-location issue for PlaneSpot.
+Users who want to use the app will simply install the app and once opened users will be prompted for their location. The app only requires location when actively using it so that option will work when promted. Then the app will be availbile for users to use completely and the user can start by clicking the main button to find the closest plane to them. 
+
+For developers the app requires pulling from the github and making sure gradle dependancies are initialized properly. Then, developers should be able to effectively do their development work on their local system. Developers are encouraged to not excessively use the find plane button when the custom api is not not set to debug mode (where other internal APIs will not be called), and are ecouraged to develop without using it as much as possible. Also, clicking the find plane button repeadedly will result in automatic rate limiting by the custom api. Developers who use an emulator within android studio must set their location in the emulator configuration for the app to work by going to the emulator setting and then the location tab and setting the location from there. If there are still issues navigate to google maps on the emulator and click the target button to center on your location. You will be promted to turn on location services for the device which should fix the location issue for PlaneSpot. If there are further issues contact me with my information at the bottom of the screen.
 
 Feature List:
 
-Flight Finding:
+Flight Finding - Find the flight that is closest to you using one button:
 
 <img width="267" alt="image" src="https://github.com/user-attachments/assets/b1f6b7a1-9adf-40a9-b432-679e46563f29" />
 
-Flight Information Display:
+Flight Information Display - Display that shows all the information about the flight nearest to you:
 
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/7385647c-f424-46e4-9101-5e8656eefcf6" />
 
-Saved Flight Recycler View:
+Saved Flight Recycler View - View for all saved flights:
 
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/a51cdb7c-609e-4e57-9663-e1cde460e2a0" />
 
-Saved Flight View (Also Demonstrating Landscape Compatibility):
+Saved Flight View (Also Demonstrating Landscape Compatibility) - View of a saved flight:
 
 <img width="473" alt="image" src="https://github.com/user-attachments/assets/30581b6c-3e44-480f-ac6e-7a4322afc25c" />
 
@@ -39,14 +35,16 @@ Night Mode:
 Technology List:
 
 App:
-
-    View Binding
     
     View Models
+
+    View Binding
     
     Room DB
     
     Jetpack Navigation Bar
+
+    Bottom Navigation
     
     Fragments
     
@@ -88,6 +86,7 @@ Night mode
 
 
 Issues or Limitations:
+
 Rate limiting on the backend with 3rd party apis being expensive
 
 Some UI bugs with landscape mode (has to do with handling top bar in portrait mode)
